@@ -87,6 +87,13 @@ public class WorldStatesExpansion extends PlaceholderExpansion implements Config
 
                     success = true;
 
+                    // it has been a while since we received info... server likely empty now
+                    final boolean invalid = System.currentTimeMillis() - server.getLastUpdate() >=
+                            (Math.max(getLong(CONFIG_INTERVAL, 8), 5) + 5) * 1000L;
+
+                    if (invalid && parts[2].equals("players"))
+                        return "0";
+
                     return value;
                 }
             }
