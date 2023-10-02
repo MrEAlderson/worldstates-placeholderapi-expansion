@@ -36,7 +36,7 @@ public class ServerState {
         final ServerState state = new ServerState();
 
         for (World world : server.getWorlds())
-            state.worlds.put(world.getName(), WorldState.from(world));
+            state.addWorld(world.getName(), WorldState.from(world));
 
         state.name = name;
 
